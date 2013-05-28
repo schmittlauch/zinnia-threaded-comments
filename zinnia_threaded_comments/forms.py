@@ -4,6 +4,8 @@ from django.contrib.comments.forms import CommentForm
 
 from zinnia_threaded_comments.models import ThreadedComment
 
+from captcha.fields import ReCaptchaField
+
 
 class ThreadedCommentForm(CommentForm):
     """
@@ -13,6 +15,8 @@ class ThreadedCommentForm(CommentForm):
         queryset=ThreadedComment.objects.all(),
         widget=forms.HiddenInput(),
         required=False)
+
+    captcha = ReCaptchaField()
 
     def get_comment_model(self):
         return ThreadedComment
